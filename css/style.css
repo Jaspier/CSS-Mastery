@@ -1,0 +1,128 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*Changes Box model so that the borders and the paddings are no longer added to the total width or the total height, that we specify for a box*/
+}
+
+body {
+  font-family: 'Lato', sans-serif; /*Set font-family in body (Watch from 4:51 in Lecture 6)*/
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7; /*Line height is 1.7x bigger than the line height without this*/
+  color: #777;
+  padding: 30px;
+}
+
+.header {
+  height: 95vh; /*At every point, the height of this box/element should be 95% of the viewport height*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url(../img/hero.jpg); /*Gradient above image and Gradient moves from left-top to right-bottom*/
+  background-size: cover; /*cover - Whatever the width of the viewport/element it will always try to fit the element inside the box*/
+  background-position: top; /*top - Whatever the viewport size, top of image always stays at the top of the container (Lecture 6 11:17)*/
+  position: relative;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 75vh,
+    0 100%
+  ); /*Explanation (Lecture 6 17:19)*/
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px; /*Prefer to control height of element rather then width*/
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%); /*Explanation (Lecture 7 13:08)*/
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+
+  backface-visibility: hidden; /*Fixes shaky animation (Lecture 8 12:20)*/
+}
+
+.heading-primary-main {
+  display: block; /*Inspect element to find out what display: block does*/
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; /*Explanation Lecture 8 (8:39)*/
+
+  /*
+      animation-iteration-count: 3; Animation happens three times
+      animation-delay: 3s;
+    */
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px); /*Goes from left to right*/
+  }
+
+  80% {
+    transform: translateX(
+      10px
+    ); /*Moves 10px more to the right so bounces back left at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); /*Goes from right to left*/
+  }
+
+  80% {
+    transform: translateX(
+      -10px
+    ); /*Moves 10px more to the left so bounces back right at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
