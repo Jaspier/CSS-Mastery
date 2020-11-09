@@ -57,6 +57,7 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%); /*Explanation (Lecture 7 13:08)*/
+  text-align: center; /*Also aligns inline button*/
 }
 
 .heading-primary {
@@ -64,6 +65,7 @@ body {
   text-transform: uppercase;
 
   backface-visibility: hidden; /*Fixes shaky animation (Lecture 8 12:20)*/
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -125,4 +127,80 @@ body {
     opacity: 1;
     transform: translate(0);
   }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /*Goes from top to bottom*/
+  }
+
+  80% {
+    transform: translateY(
+      -10px
+    ); /*Moves 10px more to the top so bounces back down at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  /* psuedo class Explanation (Lecture 9 3:33)*/
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block; /*Box model works on this element as if it was a normal block element and since it's inline. It can be treated as text*/
+  border-radius: 100px;
+  transition: all 0.2s; /*All properties are enabled to be animated*/
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px); /*Moves btn UP*/
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /*X-axis, Y-axis, Blur, colour*/
+}
+
+.btn:active {
+  transform: translateY(
+    -1px
+  ); /*Btn moves up related to initial link state when clicked (pushed effect)*/
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  /*:after pseudo element is treated as a child of the element (i.e. child of btn therefore has exact same dimensions etc.)*/
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute; /*Needs reference from first relative position it can find. Explanation (Lecture 10 3:30)*/
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  /*Manipulates :after pseudo element when hovering over btn*/
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s; /*0.75s is the animation delay*/
+  animation-fill-mode: backwards; /*Automatically applies the 0% styles before the animation starts*/
 }
