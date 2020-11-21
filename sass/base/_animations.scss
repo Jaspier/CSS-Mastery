@@ -1,0 +1,53 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); /*Goes from left to right*/
+  }
+
+  80% {
+    transform: translateX(
+      1rem
+    ); /*Moves 10px more to the right so bounces back left at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); /*Goes from right to left*/
+  }
+
+  80% {
+    transform: translateX(
+      -1rem
+    ); /*Moves 10px more to the left so bounces back right at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); /*Goes from top to bottom*/
+  }
+
+  80% {
+    transform: translateY(
+      -1rem
+    ); /*Moves 10px more to the top so bounces back down at 100%*/
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

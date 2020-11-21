@@ -1,0 +1,60 @@
+.btn {
+  &:link,
+  &:visited {
+    /* psuedo class Explanation (Lecture 9 3:33)*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /*Box model works on this element as if it was a normal block element and since it's inline. It can be treated as text*/
+    border-radius: 10rem;
+    transition: all 0.2s; /*All properties are enabled to be animated*/
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-3px); /*Moves btn UP*/
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2); /*X-axis, Y-axis, Blur, colour*/
+
+    &::after {
+      /*Manipulates :after pseudo element when hovering over btn*/
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(
+      -1px
+    ); /*Btn moves up related to initial link state when clicked (pushed effect)*/
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  &::after {
+    /*:after pseudo element is treated as a child of the element (i.e. child of btn therefore has exact same dimensions etc.)*/
+    content: ''; /*Need to specify content to allow :after pseudo element to appear (Can be left empty)*/
+    display: inline-block; /*Also need display property for :after psedo element to appear*/
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute; /*Needs reference from first relative position it can find. Explanation (Lecture 10 3:30)*/
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s; /*0.75s is the animation delay*/
+    animation-fill-mode: backwards; /*Automatically applies the 0% styles before the animation starts*/
+  }
+}
