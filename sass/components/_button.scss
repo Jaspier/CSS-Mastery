@@ -39,6 +39,15 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   &::after {
     /*:after pseudo element is treated as a child of the element (i.e. child of btn therefore has exact same dimensions etc.)*/
     content: ''; /*Need to specify content to allow :after pseudo element to appear (Can be left empty)*/
