@@ -12,7 +12,7 @@
 
   &__content {
     @include absCenter;
-    width: 60%;
+    width: 80%;
     background-color: $color-white;
     box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
     border-radius: 3px;
@@ -21,11 +21,19 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
     transition: all 0.5s 0.2s; // .2s delay
+
+    @include respond(tab-land) {
+      width: 97%;
+    }
   }
 
   &__left {
     width: 33.333333%;
     display: table-cell; // we use table so that both left and right will have the same height (therefore set parent 'content' as table as well)
+
+    @include respond(tab-port) {
+      width: 0;
+    }
   }
 
   &__right {
@@ -33,6 +41,10 @@
     display: table-cell;
     vertical-align: middle;
     padding: 3rem 5rem;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
   }
 
   &__img {

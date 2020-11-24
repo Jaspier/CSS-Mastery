@@ -7,9 +7,32 @@
 }
 
 html {
-  font-size: 62.5%; /*Root font size (1rem = 10px)*/
+  font-size: 62.5%; /*Root font size (1rem = 10px) (10px/16px = 62.5%)*/
+
+  // @include respond(phone) { (Unecessary as tab-port already specifies same font-size)
+  //   font-size: 50%;
+  // }
+  // Always the larger before the smaller media queries so that styles are applied appropiately (last declaration is the one that will be applied *top-down*)
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; // (if) 1rem = 9px (9/16 = 50%)
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; // (if) 1rem = 8px (8/16 = 50%)
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // (if) 1rem = 12px (12/16 = 50%)
+  }
 }
 
 body {
   box-sizing: border-box; /*Changes Box model so that the borders and the paddings are no longer added to the total width or the total height, that we specify for a box*/
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
 }
